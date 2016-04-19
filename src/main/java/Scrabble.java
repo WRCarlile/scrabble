@@ -6,23 +6,31 @@ import static spark.Spark.*;
 
 public class Scrabble {
   public static void main(String[] args) {}
+
+
   public static Integer calculateScore(String word){
-    if(word == "A" || word == "E" || word == "I" || word == "O" || word == "U" || word == "L"  || word == "N"  || word == "R"  || word == "S"  || word == "T" ){
-      return 1;
-    } else if ( word =="D" || word == "G") {
-      return 2;
-    } else if ( word =="B" || word == "C" || word == "M" || word == "P") {
-      return 3;
-    } else if ( word =="F" || word == "H" || word == "V" || word == "W"|| word == "Y") {
-      return 4;
-    } else if ( word =="K" ) {
-      return 5;
-    } else if ( word =="J" || word == "X" ) {
-      return 8;
-    } else if ( word =="Q" || word == "Z" ) {
-      return 10;
-    } else{
-      return 0;
+    Integer totalScore = 0;
+    char[] splitWord = word.toCharArray();
+
+    for(Integer i = 0; i < splitWord.length; i++){
+      if(splitWord[i] == 'A' || splitWord[i] == 'E' || splitWord[i] == 'I' || splitWord[i] == 'O' || splitWord[i] == 'U' || splitWord[i] == 'L'  || splitWord[i] == 'N'  || splitWord[i] == 'R'  || splitWord[i] == 'S'  || splitWord[i] == 'T' ){
+        totalScore += 1;
+      } else if ( splitWord[i] =='D' || splitWord[i] == 'G') {
+        totalScore += 2;
+      } else if ( splitWord[i] =='B' || splitWord[i] == 'C' || splitWord[i] == 'M' || splitWord[i] == 'P') {
+        totalScore += 3;
+      } else if ( splitWord[i] =='F' || splitWord[i] == 'H' || splitWord[i] == 'V' || splitWord[i] == 'W'|| splitWord[i] == 'Y') {
+        totalScore += 4;
+      } else if ( splitWord[i] =='K' ) {
+        totalScore += 5;
+      } else if ( splitWord[i] =='J' || splitWord[i] == 'X' ) {
+        totalScore += 8;
+      } else if ( splitWord[i] =='Q' || splitWord[i] == 'Z' ) {
+        totalScore += 10;
+      } else{
+        totalScore += 0;
+      }
     }
+    return totalScore;
   }
 }
