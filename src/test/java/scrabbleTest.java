@@ -58,6 +58,12 @@ public class scrabbleTest {
     Integer expected = 5;
     assertEquals(expected, testScrabble.calculateScore("CAT"));
   }
+  @Test
+  public void calculateScore_returnsScoreForWordRegardlessCase_5() {
+    Scrabble testScrabble = new Scrabble();
+    Integer expected = 5;
+    assertEquals(expected, testScrabble.calculateScore("Cat"));
+  }
 
 
 

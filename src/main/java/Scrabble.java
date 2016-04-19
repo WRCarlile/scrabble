@@ -5,10 +5,29 @@ import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.*;
 
 public class Scrabble {
-  public static void main(String[] args) {}
+  public static void main(String[] args) {
+    get("/", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/home.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
+
+    get("/score", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+
+      String userInput = request.queryParams("word");
+      Scrabble newScrabble = new Scrabble();
+      Integer totalScore = newScrabble.calculateScore(userInput);
+      model.put("totalScore", totalScore);
+
+      model.put("template", "templates/score.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
+  }
 
 
   public static Integer calculateScore(String word){
+    word = word.toUpperCase();
     Integer totalScore = 0;
     char[] splitWord = word.toCharArray();
 
